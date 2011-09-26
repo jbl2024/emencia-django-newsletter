@@ -3,6 +3,7 @@ from BeautifulSoup import BeautifulSoup
 from django.core.urlresolvers import reverse
 
 from emencia.django.newsletter.models import Link
+from emencia.django.newsletter.settings import TRACKING_ANKERS
 
 
 def body_insertion(content, insertion, end=False):
@@ -28,6 +29,12 @@ def track_links(content, context):
     for link_markup in soup('a'):
         if link_markup.get('href') and \
                'no-track' not in link_markup.get('rel', ''):
+
+            # don't track links with an anker
+            if TRACKING_ANKERS:
+                if '#' in link_markup.get('href')[0]:
+                    continue
+
             link_href = link_markup['href']
             link_title = link_markup.get('title', link_href)
             link, created = Link.objects.get_or_create(url=link_href,
