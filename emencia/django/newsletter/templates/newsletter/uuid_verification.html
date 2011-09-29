@@ -1,0 +1,17 @@
+{#--- subscriber verification --- start -------------------------------------#}
+{% extends "newsletter/base.html"%}
+
+{% block title %}UUID Verification{% endblock %}
+
+{% block content %}
+    <h2>UUID Verification</h2>
+    <p>{{ link_id }}</p>
+
+{% if link_id %}
+    <p>OK</p>
+{% else %}
+    <p>nich OK</p>
+{% endif %}
+
+{% endblock %}
+{#--- subscriber verification --- end ---------------------------------------#}

@@ -7,11 +7,12 @@ from emencia.django.newsletter.forms import SubscriberVerificationForm
 urlpatterns = patterns(
     'emencia.django.newsletter.views.verification',
     url(
-        r'^',
+        r'^$',
         'view_subscriber_verification',
         {'form_class': SubscriberVerificationForm},
         name='newsletter_subscriber_verification',
     ),
+    url(r'^([\w-]+)/$', 'view_uuid_verification'),
 )
 
 # --- subscriber verification --- end -----------------------------------------
