@@ -27,7 +27,7 @@ DEFAULT_HEADER_REPLY = getattr(settings, 'NEWSLETTER_DEFAULT_HEADER_REPLY',
                                DEFAULT_HEADER_SENDER)
 
 TRACKING_LINKS = getattr(settings, 'NEWSLETTER_TRACKING_LINKS', True)
-TRACKING_ANKERS = getattr(settings, 'NEWSLETTER_TRACKING_ANKERS', False)
+
 TRACKING_IMAGE_FORMAT = getattr(settings, 'NEWSLETTER_TRACKING_IMAGE_FORMAT', 'jpg')
 TRACKING_IMAGE = getattr(settings, 'NEWSLETTER_TRACKING_IMAGE',
                          BASE64_IMAGES[TRACKING_IMAGE_FORMAT])
@@ -38,3 +38,14 @@ RESTART_CONNECTION_BETWEEN_SENDING = getattr(
     settings, 'NEWSLETTER_RESTART_CONNECTION_BETWEEN_SENDING', False)
 
 BASE_PATH = getattr(settings, 'NEWSLETTER_BASE_PATH', 'uploads/newsletter')
+
+# --- tracking ankers --- start -----------------------------------------------
+TRACKING_ANKERS = getattr(settings, 'NEWSLETTER_TRACKING_ANKERS', False)
+# --- tracking ankers --- end -------------------------------------------------
+
+# --- subscriber verification --- start ---------------------------------------
+SUBSCRIBER_VERIFICATION = getattr(settings,
+    'NEWSLETTER_SUBSCRIBER_VERIFICATION',
+    True
+)
+# --- subscriber verification --- end -----------------------------------------

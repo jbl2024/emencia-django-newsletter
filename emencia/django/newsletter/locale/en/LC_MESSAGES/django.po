@@ -628,6 +628,20 @@ msgstr ""
 msgid "Raw text"
 msgstr ""
 
+# --- subscriber verification --- start ---------------------------------------
+#: templates/newsletter/subscriber_verification.html:5
+msgid "Subscription to the newsletter"
+msgstr "Subscribe to the newsletter"
+
+#: templates/newsletter/mailing_list_subscribe.html:11
+msgid "Thanks for your subscription!"
+msgstr "Thanks for your subscription!"
+
+#: templates/newsletter/mailing_list_subscribe.html:17
+msgid "Validate this form to subscribe to the newsletter."
+msgstr "Validate this form to unsubscribe to the newsletter."
+# --- subscriber verification --- end -----------------------------------------
+
 #: templates/newsletter/mailing_list_subscribe.html:4
 #: templates/newsletter/mailing_list_subscribe.html:7
 #, fuzzy

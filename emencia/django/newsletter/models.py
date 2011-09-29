@@ -1,8 +1,6 @@
 """Models for emencia.django.newsletter"""
-from smtplib import SMTP
-from smtplib import SMTPHeloError
-from datetime import datetime
-from datetime import timedelta
+from smtplib import SMTP, SMTPHeloError
+from datetime import datetime, timedelta
 
 from django.db import models
 from django.utils.encoding import smart_str
@@ -15,11 +13,14 @@ from django.utils.encoding import force_unicode
 
 from tagging.fields import TagField
 from emencia.django.newsletter.managers import ContactManager
-from emencia.django.newsletter.settings import BASE_PATH
-from emencia.django.newsletter.settings import MAILER_HARD_LIMIT
-from emencia.django.newsletter.settings import DEFAULT_HEADER_REPLY
-from emencia.django.newsletter.settings import DEFAULT_HEADER_SENDER
+from emencia.django.newsletter.settings \
+    import BASE_PATH, MAILER_HARD_LIMIT, DEFAULT_HEADER_REPLY, \
+        DEFAULT_HEADER_SENDER
 from emencia.django.newsletter.utils.vcard import vcard_contact_export
+
+# --- subscriber verification --- start ---------------------------------------
+import uuid
+# --- subscriber verification --- end -----------------------------------------
 
 # Patch for Python < 2.6
 try:
@@ -96,6 +97,10 @@ class SMTPServer(models.Model):
 
 class Contact(models.Model):
     """Contact for emailing"""
+    # --- subscriber verification --- start -----------------------------------
+    verified = models.BooleanField('verified', default=False)
+    # --- subscriber verification --- end -------------------------------------
+
     email = models.EmailField(_('email'), unique=True)
     first_name = models.CharField(_('first name'), max_length=50, blank=True)
     last_name = models.CharField(_('last name'), max_length=50, blank=True)
@@ -352,3 +357,13 @@ class WorkGroup(models.Model):
     class Meta:
         verbose_name = _('workgroup')
         verbose_name_plural = _('workgroups')
+
+# --- subscriber verification --- start ---------------------------------------
+class SubscriberVerification(models.Model):
+    link_id = models.CharField(max_length=255, default=uuid.uuid4)
+    contact = models.ForeignKey(Contact)
+
+    def __unicode__(self):
+        return unicode(self.id)
+
+# --- subscriber verification --- end -----------------------------------------

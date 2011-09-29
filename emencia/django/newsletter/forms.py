@@ -3,8 +3,11 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from emencia.django.newsletter.models import Contact
-from emencia.django.newsletter.models import MailingList
+from emencia.django.newsletter.models import Contact, MailingList
+
+# --- subscriber verification --- start ---------------------------------------
+from emencia.django.newsletter.models import SubscriberVerification
+# --- subscriber verification --- end -----------------------------------------
 
 
 class MailingListSubscriptionForm(forms.ModelForm):
@@ -54,3 +57,20 @@ class AllMailingListSubscriptionForm(MailingListSubscriptionForm):
         for mailing_list in data['mailing_lists']:
             mailing_list.subscribers.add(contact)
             mailing_list.unsubscribers.remove(contact)
+
+# --- subscriber verification --- start ---------------------------------------
+class SubscriberVerificationForm(forms.ModelForm):
+    """Form for verificate an contact"""
+    class Meta:
+        model = Contact
+        exclude = (
+            'verified',
+            'subscriber',
+            'valid',
+            'tester',
+            'tags',
+            'content_type',
+            'object_id'
+        )
+
+# --- subscriber verification --- end -----------------------------------------

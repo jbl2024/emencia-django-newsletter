@@ -609,6 +609,20 @@ msgstr ""
 msgid "Raw text"
 msgstr ""
 
+# --- subscriber verification --- start ---------------------------------------
+#: templates/newsletter/subscriber_verification.html:5
+msgid "Subscription to the newsletter"
+msgstr "Newsletteranmeldung"
+
+#: templates/newsletter/mailing_list_subscribe.html:11
+msgid "Thanks for your subscription!"
+msgstr "Danke für Ihre Anemeldung!"
+
+#: templates/newsletter/mailing_list_subscribe.html:17
+msgid "Validate this form to subscribe to the newsletter."
+msgstr "Füllen Sie dieses Formular korrekt aus um sich für den Newsletter einzutragen"
+# --- subscriber verification --- end -----------------------------------------
+
 #: templates/newsletter/mailing_list_subscribe.html:4
 #: templates/newsletter/mailing_list_subscribe.html:7
 msgid "Subscription to mailing list"

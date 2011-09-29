@@ -1,13 +1,14 @@
 """Views for emencia.django.newsletter Mailing List"""
 from django.template import RequestContext
-from django.shortcuts import get_object_or_404
-from django.shortcuts import render_to_response
+from django.shortcuts import get_object_or_404, render_to_response
 
 from emencia.django.newsletter.utils.tokens import untokenize
-from emencia.django.newsletter.models import Newsletter
-from emencia.django.newsletter.models import MailingList
-from emencia.django.newsletter.models import ContactMailingStatus
+from emencia.django.newsletter.models \
+    import Newsletter, MailingList, ContactMailingStatus
 
+# --- subscriber verification --- start ---------------------------------------
+from emencia.django.newsletter.models import SubscriberVerification
+# --- subscriber verification --- end -----------------------------------------
 
 def view_mailinglist_unsubscribe(request, slug, uidb36, token):
     """Unsubscribe a contact to a mailing list"""
@@ -42,6 +43,8 @@ def view_mailinglist_subscribe(request, form_class, mailing_list_id=None):
     if request.POST and not subscribed:
         form = form_class(request.POST)
         if form.is_valid():
+            # --- subscriber verification --- start ---------------------------
+            # --- subscriber verification --- end -----------------------------
             form.save(mailing_list)
             subscribed = True
     else:
