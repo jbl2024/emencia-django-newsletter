@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emencia Django Newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-04 04:13-0500\n"
+"POT-Creation-Date: 2011-10-04 09:04-0500\n"
 "PO-Revision-Date: 2011-09-22 11:01+0000\n"
 "Last-Translator: Fantomas42 <fantomas42@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -847,17 +847,18 @@ msgstr ""
 msgid "Historic of %s"
 msgstr ""
 
-#: views/verification.py:45
+#: views/verification.py:48
 msgid "Subriber verification"
 msgstr "Anmelde Überprüfung"
 
-#: views/verification.py:46
+#: views/verification.py:49
 msgid ""
-"Thanks for Subscription, please klick the following link to Verificate your "
-"email adaress."
-msgstr "Danke, bitte klicken Sie folgenden Link um die Anmeldung abzuschließen."
+"Thanks for subscription, please click the following link to verificate your "
+"email address."
+msgstr ""
+"Danke, bitte klicken Sie folgenden Link um die Anmeldung abzuschließen."
 
-#: views/verification.py:63
+#: views/verification.py:55
 msgid "verify link"
 msgstr "Email bestätigen"
 

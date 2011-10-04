@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-04 04:13-0500\n"
+"POT-Creation-Date: 2011-10-04 08:35-0500\n"
 "PO-Revision-Date: 2010-01-21 10:54+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -885,17 +885,17 @@ msgstr ""
 msgid "Historic of %s"
 msgstr "Historic of %s"
 
-#: views/verification.py:45
+#: views/verification.py:48
 msgid "Subriber verification"
 msgstr ""
 
-#: views/verification.py:46
+#: views/verification.py:49
 msgid ""
-"Thanks for Subscription, please klick the following link to Verificate your "
-"email adaress."
+"Thanks for subscription, please click the following link to verificate your "
+"email address."
 msgstr ""
 
-#: views/verification.py:63
+#: views/verification.py:55
 msgid "verify link"
 msgstr ""
 

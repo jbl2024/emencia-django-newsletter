@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # --- subscriber verification --- start ---------------------------------------
 """
 Views for emencia.django.newsletter Subscriber Verification
@@ -13,7 +14,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from emencia.django.newsletter.models \
     import SMTPServer, MailingList, SubscriberVerification
-from emencia.django.newsletter.settings import DEFAULT_HEADER_SENDER
+from emencia.django.newsletter.settings import DEFAULT_HEADER_REPLY
 
 from django.utils import translation
 
@@ -37,7 +38,7 @@ def view_subscriber_verification(request, form_class):
             # a nice idea.
             server = SMTPServer.objects.get(id=1)
 
-            # set    server settings to django
+            # set server settings to django
             settings.EMAIL_HOST = server.host
             settings.EMAIL_HOST_PASSWORD = server.password
             settings.EMAIL_HOST_USER = server.user
@@ -46,25 +47,13 @@ def view_subscriber_verification(request, form_class):
 
             # mail settings
             subject = _('Subriber verification')
-            message = _('Thanks for Subscription, please klick the following ' \
-                'link to Verificate your email adaress.')
-            #find a way for a not hardcoded mail.
+            message = _('Thanks for subscription, please click the following link to verificate your email address.')
             from_mail = DEFAULT_HEADER_REPLY
             to_mail = context['form'].instance.email
 
-            #add language string
-            text_content = '{0}' \
-                '\n\n' \
-                'http://{1}/newsletters/subscribe/{2}'\
-                .format(message, str(request.get_host()), str(link_id))
-            html_content = '<body><p>{0}</p>' \
-                '<p><a href="http://{1}/newsletters/subscribe/{2}">{3}</a></p></body>'\
-                .format(
-                    message,
-                    str(request.get_host()),
-                    str(link_id),
-                    _('verify link')
-                )
+            link = 'http://{0}/newsletters/subscribe/{1}'.format(str(request.get_host()), str(link_id))
+            text_content = u'{0!s}\n\n {1}'.format(message, link)
+            html_content = u'<body><p>{0!s}</p><p><a href="{1}">{2}</a></p></body>'.format(message, link, _('verify link'))
             msg = EmailMultiAlternatives(
                 subject,
                 text_content,
