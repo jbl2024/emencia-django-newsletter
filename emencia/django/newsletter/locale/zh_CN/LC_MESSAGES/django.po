@@ -1,300 +1,301 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # aaffdd11 <chenyuan328@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: Emencia Django Newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-22 06:00-0500\n"
+"POT-Creation-Date: 2011-09-30 08:35-0500\n"
 "PO-Revision-Date: 2011-09-22 11:01+0000\n"
 "Last-Translator: Fantomas42 <fantomas42@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: forms.py:20
+#: forms.py:23
 msgid "Email"
 msgstr "电子邮件"
 
-#: forms.py:44
+#: forms.py:47 forms.py:68
 msgid "Mailing lists"
 msgstr "邮件表"
 
-#: models.py:39 models.py:156 models.py:339
+#: models.py:40 models.py:161 models.py:344
 msgid "name"
 msgstr "姓名"
 
-#: models.py:40
+#: models.py:41
 msgid "server host"
 msgstr "服务器主机"
 
-#: models.py:41
+#: models.py:42
 msgid "server user"
 msgstr "服务器用户"
 
-#: models.py:42 models.py:44
+#: models.py:43 models.py:45
 msgid "Leave it empty if the host is public."
 msgstr "如果主机是公用的则清空"
 
-#: models.py:43
+#: models.py:44
 msgid "server password"
 msgstr "服务器密码"
 
-#: models.py:45
+#: models.py:46
 msgid "server port"
 msgstr "服务器端口"
 
-#: models.py:46
+#: models.py:47
 msgid "server use TLS"
 msgstr "服务器使用的传输层协议"
 
-#: models.py:48
+#: models.py:49
 msgid "custom headers"
 msgstr "自定义页头"
 
-#: models.py:49
+#: models.py:50
 msgid ""
 "key1: value1 key2: value2, splitted by return line.\n"
 "Useful for passing some tracking headers if your provider allows it."
-msgstr "键1:值1 键2:值2，通过换行分隔。提供商允许的话可以用于传递一些有用的跟踪头。"
+msgstr ""
+"键1:值1 键2:值2，通过换行分隔。提供商允许的话可以用于传递一些有用的跟踪头。"
 
-#: models.py:51
+#: models.py:52
 msgid "mails per hour"
 msgstr "每小时邮件数"
 
-#: models.py:93
+#: models.py:94
 msgid "SMTP server"
 msgstr "电子邮件传输服务器"
 
-#: models.py:94
+#: models.py:95
 msgid "SMTP servers"
 msgstr "电子邮件传输服务器群"
 
-#: models.py:99 views/statistics.py:76
+#: models.py:104 views/statistics.py:76
 msgid "email"
 msgstr "电子邮件"
 
-#: models.py:100 views/statistics.py:75
+#: models.py:105 views/statistics.py:75
 msgid "first name"
 msgstr "名"
 
-#: models.py:101 views/statistics.py:75
+#: models.py:106 views/statistics.py:75
 msgid "last name"
 msgstr "姓"
 
-#: models.py:103
+#: models.py:108
 msgid "subscriber"
 msgstr "用户"
 
-#: models.py:104
+#: models.py:109
 msgid "valid email"
 msgstr "有效的电子邮件"
 
-#: models.py:105
+#: models.py:110
 msgid "contact tester"
 msgstr "接触试验"
 
-#: models.py:106
+#: models.py:111
 msgid "tags"
 msgstr "标记"
 
-#: models.py:112 models.py:165 models.py:227 models.py:260 models.py:324
+#: models.py:117 models.py:170 models.py:232 models.py:265 models.py:329
 msgid "creation date"
 msgstr "建立日期"
 
-#: models.py:113 models.py:166 models.py:228
+#: models.py:118 models.py:171 models.py:233
 msgid "modification date"
 msgstr "更改日期"
 
-#: models.py:132
+#: models.py:137
 msgid "mail format"
 msgstr "邮件格式"
 
-#: models.py:150 models.py:319
+#: models.py:155 models.py:324
 msgid "contact"
 msgstr "联系"
 
-#: models.py:151 models.py:342
+#: models.py:156 models.py:347
 msgid "contacts"
 msgstr "联系"
 
-#: models.py:157
+#: models.py:162
 msgid "description"
 msgstr "描述"
 
-#: models.py:159 models.py:170
+#: models.py:164 models.py:175
 msgid "subscribers"
 msgstr "订购"
 
-#: models.py:161 models.py:174
+#: models.py:166 models.py:179
 msgid "unsubscribers"
 msgstr "无效订购"
 
-#: models.py:186 models.py:211 cmsplugin_newsletter/models.py:15
+#: models.py:191 models.py:216 cmsplugin_newsletter/models.py:15
 msgid "mailing list"
 msgstr "邮件清单"
 
-#: models.py:187 models.py:344
+#: models.py:192 models.py:349
 msgid "mailing lists"
 msgstr "邮件表"
 
-#: models.py:198
+#: models.py:203
 msgid "draft"
 msgstr "草稿"
 
-#: models.py:199
+#: models.py:204
 msgid "waiting sending"
 msgstr "正在等待发送"
 
-#: models.py:200
+#: models.py:205
 msgid "sending"
 msgstr "正在发送"
 
-#: models.py:201 models.py:309
+#: models.py:206 models.py:314
 msgid "sent"
 msgstr "已发送"
 
-#: models.py:202
+#: models.py:207
 msgid "canceled"
 msgstr "已取消"
 
-#: models.py:205 models.py:257 models.py:282 cmsplugin_newsletter/models.py:12
+#: models.py:210 models.py:262 models.py:287 cmsplugin_newsletter/models.py:12
 msgid "title"
 msgstr "标题"
 
-#: models.py:206
+#: models.py:211
 msgid ""
 "You can use the \"{{ UNIQUE_KEY }}\" variable for unique identifier within "
 "the newsletter's title."
 msgstr "你可以在简讯标题种使用{{UNIQUE_KEY}}来确保唯一性。"
 
-#: models.py:208
+#: models.py:213
 msgid "content"
 msgstr "内容"
 
-#: models.py:208
+#: models.py:213
 msgid "Or paste an URL."
 msgstr "或粘帖一个互联网地址"
 
-#: models.py:209
+#: models.py:214
 msgid ""
 "<body>\n"
 "<!-- Edit your newsletter here -->\n"
 "</body>"
 msgstr "在这里编辑您的简讯"
 
-#: models.py:212
+#: models.py:217
 msgid "test contacts"
 msgstr "测试接触"
 
-#: models.py:215
+#: models.py:220
 msgid "smtp server"
 msgstr "邮件传输协议服务"
 
-#: models.py:217
+#: models.py:222
 msgid "sender"
 msgstr "发送人"
 
-#: models.py:219
+#: models.py:224
 msgid "reply to"
 msgstr "回复"
 
-#: models.py:222 models.py:320
+#: models.py:227 models.py:325
 msgid "status"
 msgstr "状态"
 
-#: models.py:223
+#: models.py:228
 msgid "sending date"
 msgstr "发送日期"
 
-#: models.py:225
+#: models.py:230
 msgid "Used for displaying the newsletter on the site."
 msgstr "用于在这个位置显示简报"
 
-#: models.py:250 models.py:281 models.py:318
+#: models.py:255 models.py:286 models.py:323
 #: cmsplugin_newsletter/cms_plugins.py:13
 msgid "newsletter"
 msgstr "通迅;简报"
 
-#: models.py:251 models.py:346
+#: models.py:256 models.py:351
 msgid "newsletters"
 msgstr "通迅;简报"
 
-#: models.py:258
+#: models.py:263
 msgid "url"
 msgstr "互联网地址"
 
-#: models.py:270 models.py:321
+#: models.py:275 models.py:326
 msgid "link"
 msgstr "连接"
 
-#: models.py:271
+#: models.py:276
 msgid "links"
 msgstr "链接"
 
-#: models.py:283
+#: models.py:288
 msgid "file to attach"
 msgstr "附上文件"
 
-#: models.py:287
+#: models.py:292
 msgid "attachment"
 msgstr "附件"
 
-#: models.py:288
+#: models.py:293
 msgid "attachments"
 msgstr "附件"
 
-#: models.py:308
+#: models.py:313
 msgid "sent in test"
 msgstr "发送试验"
 
-#: models.py:310
+#: models.py:315
 msgid "error"
 msgstr "错误"
 
-#: models.py:311
+#: models.py:316
 msgid "invalid email"
 msgstr "无效邮件"
 
-#: models.py:312
+#: models.py:317
 msgid "opened"
 msgstr "已打开的"
 
-#: models.py:313
+#: models.py:318
 msgid "opened on site"
 msgstr "访问于"
 
-#: models.py:314
+#: models.py:319
 msgid "link opened"
 msgstr "打开的链接"
 
-#: models.py:315
+#: models.py:320
 msgid "unsubscription"
 msgstr "取消订阅"
 
-#: models.py:333
+#: models.py:338
 msgid "contact mailing status"
 msgstr "邮件状态"
 
-#: models.py:334
+#: models.py:339
 msgid "contact mailing statuses"
 msgstr "邮件状态"
 
-#: models.py:340
+#: models.py:345
 msgid "permissions group"
 msgstr "权限组"
 
-#: models.py:353
+#: models.py:358
 msgid "workgroup"
 msgstr "工作组"
 
-#: models.py:354
+#: models.py:359
 msgid "workgroups"
 msgstr "工作组"
 
@@ -385,83 +386,83 @@ msgstr "导出订阅人"
 msgid "Export"
 msgstr "导出"
 
-#: admin/newsletter.py:41
+#: admin/newsletter.py:43
 msgid "Receivers"
 msgstr "接收人"
 
-#: admin/newsletter.py:42
+#: admin/newsletter.py:44
 msgid "Sending"
 msgstr "正在发送"
 
-#: admin/newsletter.py:43 admin/smtpserver.py:36
+#: admin/newsletter.py:45 admin/smtpserver.py:36
 msgid "Miscellaneous"
 msgstr "杂项"
 
-#: admin/newsletter.py:79
+#: admin/newsletter.py:81
 msgid "Default"
 msgstr "默认"
 
-#: admin/newsletter.py:106
+#: admin/newsletter.py:108
 msgid "Unable to download HTML, due to errors within."
 msgstr "由于内部HTML错误无法发送的新闻"
 
-#: admin/newsletter.py:108
+#: admin/newsletter.py:110
 msgid "Please install lxml for parsing an URL."
 msgstr "请安装用于解析URL的lxml。"
 
-#: admin/newsletter.py:120
+#: admin/newsletter.py:122
 msgid "View historic"
 msgstr "查看历史"
 
-#: admin/newsletter.py:121 admin/newsletter.py:130
+#: admin/newsletter.py:123 admin/newsletter.py:132
 msgid "Not available"
 msgstr "不可用"
 
-#: admin/newsletter.py:123
+#: admin/newsletter.py:125
 msgid "Historic"
 msgstr "历史"
 
-#: admin/newsletter.py:129
+#: admin/newsletter.py:131
 msgid "View statistics"
 msgstr "查看统计"
 
-#: admin/newsletter.py:132
+#: admin/newsletter.py:134
 msgid "Statistics"
 msgstr "统计"
 
-#: admin/newsletter.py:142
+#: admin/newsletter.py:144
 msgid "Unable send newsletter, due to errors within HTML."
 msgstr "由于内部HTML错误无法发送的新闻。"
 
-#: admin/newsletter.py:144
+#: admin/newsletter.py:146
 #, python-format
 msgid "%s succesfully sent."
 msgstr "%s发送成功."
 
-#: admin/newsletter.py:146
+#: admin/newsletter.py:148
 #, python-format
 msgid "No test contacts assigned for %s."
 msgstr "%s没有测试人。"
 
-#: admin/newsletter.py:147
+#: admin/newsletter.py:149
 msgid "Send test email"
 msgstr "发送邮件测试"
 
-#: admin/newsletter.py:155
+#: admin/newsletter.py:157
 #, python-format
 msgid "%s newletters are ready to send"
 msgstr "%s简讯已准备好发送"
 
-#: admin/newsletter.py:156
+#: admin/newsletter.py:158
 msgid "Make ready to send"
 msgstr "设为“准备发送”"
 
-#: admin/newsletter.py:165
+#: admin/newsletter.py:167
 #, python-format
 msgid "%s newletters are cancelled"
 msgstr "%s通讯被取消"
 
-#: admin/newsletter.py:166
+#: admin/newsletter.py:168
 msgid "Cancel the sending"
 msgstr "取消发送"
 
@@ -624,6 +625,8 @@ msgid "Validate this form to subscribe to the mailing lists."
 msgstr "验证此表以取消订阅本邮件列表。"
 
 #: templates/newsletter/mailing_list_subscribe.html:21
+#: templates/newsletter/subscriber_verification.html:19
+#: templates/newsletter/uuid_verification.html:18
 #: templates/newsletter/cms/subscription_form.html:20
 msgid "Subscribe"
 msgstr "订户"
@@ -773,6 +776,28 @@ msgstr "密度图"
 msgid "No Top Links yet."
 msgstr "目前尚未有任何的受欢迎链接"
 
+#: templates/newsletter/subscriber_verification.html:6
+#: templates/newsletter/subscriber_verification.html:10
+#, fuzzy
+msgid "Subscription to the newsletter"
+msgstr "创建一个邮件列表"
+
+#: templates/newsletter/subscriber_verification.html:13
+#: templates/newsletter/uuid_verification.html:10
+#, fuzzy
+msgid "Thanks for your email subscription!"
+msgstr "总订阅数"
+
+#: templates/newsletter/subscriber_verification.html:15
+#, fuzzy
+msgid "Validate this form to subscribe to the newsletter."
+msgstr "验证此表以取消订阅本邮件列表。"
+
+#: templates/newsletter/uuid_verification.html:5
+#: templates/newsletter/uuid_verification.html:8
+msgid "Subscriber verification"
+msgstr ""
+
 #: templates/newsletter/cms/subscription_form.html:8
 msgid "You have successfully subscribed to the mailing list!"
 msgstr "你已退订这个邮件列表。"
@@ -804,7 +829,7 @@ msgstr "总订阅数"
 msgid "#val# clicks"
 msgstr "点击数"
 
-#: views/tracking.py:67
+#: views/tracking.py:68
 #, python-format
 msgid "Historic of %s"
 msgstr "%s的历史"
@@ -847,5 +872,3 @@ msgstr "%s的历史"
 
 #~ msgid "Double openings"
 #~ msgstr "Total Subscriptions"
-
-

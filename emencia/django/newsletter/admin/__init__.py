@@ -18,9 +18,12 @@ from emencia.django.newsletter.admin.smtpserver import SMTPServerAdmin
 from emencia.django.newsletter.admin.mailinglist import MailingListAdmin
 
 # --- subscriber verification --- start ---------------------------------------
-from emencia.django.newsletter.models import SubscriberVerification
-from emencia.django.newsletter.admin.verification \
-    import SubscriberVerificationAdmin
+from emencia.django.newsletter.settings import SUBSCRIBER_VERIFICATION
+
+if SUBSCRIBER_VERIFICATION:
+    from emencia.django.newsletter.models import SubscriberVerification
+    from emencia.django.newsletter.admin.verification \
+        import SubscriberVerificationAdmin
 # --- subscriber verification --- end -----------------------------------------
 
 

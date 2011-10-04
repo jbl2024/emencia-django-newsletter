@@ -3,15 +3,19 @@
 Views for emencia.django.newsletter Subscriber Verification
 
 TODO:
-    - add language strings
     - add template for mail
 """
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404, render_to_response
+from django.utils.translation import ugettext_lazy as _
 
-from emencia.django.newsletter.models import SubscriberVerification
+from emencia.django.newsletter.models \
+    import SMTPServer, MailingList, SubscriberVerification
+from emencia.django.newsletter.settings import DEFAULT_HEADER_SENDER
+
+from django.utils import translation
 
 def view_subscriber_verification(request, form_class):
     """
@@ -33,7 +37,7 @@ def view_subscriber_verification(request, form_class):
             # a nice idea.
             server = SMTPServer.objects.get(id=1)
 
-            # set server settings to django
+            # set    server settings to django
             settings.EMAIL_HOST = server.host
             settings.EMAIL_HOST_PASSWORD = server.password
             settings.EMAIL_HOST_USER = server.user
@@ -41,11 +45,11 @@ def view_subscriber_verification(request, form_class):
             settings.EMAIL_USE_TLS = server.tls
 
             # mail settings
-            subject = 'Subriber verification'
-            message = 'Thanks for Subscription, please klick the following ' \
-                'link to Verificate your email adaress.'
+            subject = _('Subriber verification')
+            message = _('Thanks for Subscription, please klick the following ' \
+                'link to Verificate your email adaress.')
             #find a way for a not hardcoded mail.
-            from_mail = 'no_reply@freshmilk.de'
+            from_mail = DEFAULT_HEADER_REPLY
             to_mail = context['form'].instance.email
 
             #add language string
@@ -54,8 +58,13 @@ def view_subscriber_verification(request, form_class):
                 'http://{1}/newsletters/subscribe/{2}'\
                 .format(message, str(request.get_host()), str(link_id))
             html_content = '<body><p>{0}</p>' \
-                '<p><a href="http://{1}/newsletters/subscribe/{2}">verify link</a></p></body>'\
-                .format(message, str(request.get_host()), str(link_id))
+                '<p><a href="http://{1}/newsletters/subscribe/{2}">{3}</a></p></body>'\
+                .format(
+                    message,
+                    str(request.get_host()),
+                    str(link_id),
+                    _('verify link')
+                )
             msg = EmailMultiAlternatives(
                 subject,
                 text_content,
@@ -65,8 +74,7 @@ def view_subscriber_verification(request, form_class):
             msg.attach_alternative(html_content, 'text/html')
             msg.send()
 
-            #dummy, will delete the line after this function is ready.
-            #context['form'].instance.delete()
+            context['send'] = True
 
     else:
         context['form'] = form_class()
@@ -75,24 +83,41 @@ def view_subscriber_verification(request, form_class):
                               context,
                               context_instance=RequestContext(request))
 
-def view_uuid_verification(request, link_id):
+def view_uuid_verification(request, link_id, form_class=None):
     """
     A simple view that shows if verification is true or false.
     """
-    subscription = {}
     context = {}
+    context['mailing_list_count'] = MailingList.objects.count()
     context['link_id'] = link_id
 
-    subscription['object'] = SubscriberVerification.objects.get(link_id=link_id)
-    subscription['contact'] = subscription['object'].contact
+    try:
+        subscription = {}
+        subscription['object'] = SubscriberVerification.objects.get(
+            link_id=link_id
+        )
+        subscription['contact'] = subscription['object'].contact
+        subscription['contact'].verified = True
+        subscription['contact'].save()
 
-    subscription['contact'].verified = True
-    subscription['contact'].save()
+        if context['mailing_list_count'] == 1:
+            mailing_list = MailingList.objects.get(id=1)
+            mailing_list.subscribers.add(subscription['contact'].id)
+        elif request.POST:
+            form = form_class(request.POST)
+            if form.is_valid():
+                form.save(subscription['contact'].id)
+            context['send'] = True
+        else:
+            context['form'] = form_class()
 
-    subscription['object'].delete()
+        context['uuid_exist'] = True
+    except SubscriberVerification.DoesNotExist:
+        context['uuid_exist'] = False
 
     return render_to_response('newsletter/uuid_verification.html',
                               context,
                               context_instance=RequestContext(request))
+
 
 # --- subscriber verification --- end -----------------------------------------

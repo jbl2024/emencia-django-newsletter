@@ -19,7 +19,10 @@ from emencia.django.newsletter.settings \
 from emencia.django.newsletter.utils.vcard import vcard_contact_export
 
 # --- subscriber verification --- start ---------------------------------------
-import uuid
+from emencia.django.newsletter.settings import SUBSCRIBER_VERIFICATION
+
+if SUBSCRIBER_VERIFICATION:
+    import uuid
 # --- subscriber verification --- end -----------------------------------------
 
 # Patch for Python < 2.6
@@ -98,7 +101,8 @@ class SMTPServer(models.Model):
 class Contact(models.Model):
     """Contact for emailing"""
     # --- subscriber verification --- start -----------------------------------
-    verified = models.BooleanField('verified', default=False)
+    if SUBSCRIBER_VERIFICATION:
+        verified = models.BooleanField('verified', default=False)
     # --- subscriber verification --- end -------------------------------------
 
     email = models.EmailField(_('email'), unique=True)
@@ -359,11 +363,16 @@ class WorkGroup(models.Model):
         verbose_name_plural = _('workgroups')
 
 # --- subscriber verification --- start ---------------------------------------
-class SubscriberVerification(models.Model):
-    link_id = models.CharField(max_length=255, default=uuid.uuid4)
-    contact = models.ForeignKey(Contact)
+if SUBSCRIBER_VERIFICATION:
+    class SubscriberVerification(models.Model):
+        link_id = models.CharField(
+            _('link_id'),
+            max_length=255,
+            default=uuid.uuid4
+        )
+        contact = models.ForeignKey(Contact)
 
-    def __unicode__(self):
-        return unicode(self.id)
+        def __unicode__(self):
+            return unicode(self.id)
 
 # --- subscriber verification --- end -----------------------------------------

@@ -6,10 +6,6 @@ from emencia.django.newsletter.utils.tokens import untokenize
 from emencia.django.newsletter.models \
     import Newsletter, MailingList, ContactMailingStatus
 
-# --- subscriber verification --- start ---------------------------------------
-from emencia.django.newsletter.models import SubscriberVerification
-# --- subscriber verification --- end -----------------------------------------
-
 def view_mailinglist_unsubscribe(request, slug, uidb36, token):
     """Unsubscribe a contact to a mailing list"""
     newsletter = get_object_or_404(Newsletter, slug=slug)
@@ -30,7 +26,7 @@ def view_mailinglist_unsubscribe(request, slug, uidb36, token):
                               context_instance=RequestContext(request))
 
 
-def view_mailinglist_subscribe(request, form_class, mailing_list_id=None):
+def view_mailinglist_subscribe(request, form_class, mailing_list_id=None, link_id=None):
     """
     A simple view that shows a form for subscription
     for a mailing list(s).
@@ -43,8 +39,6 @@ def view_mailinglist_subscribe(request, form_class, mailing_list_id=None):
     if request.POST and not subscribed:
         form = form_class(request.POST)
         if form.is_valid():
-            # --- subscriber verification --- start ---------------------------
-            # --- subscriber verification --- end -----------------------------
             form.save(mailing_list)
             subscribed = True
     else:
