@@ -264,11 +264,11 @@ Tracking Ankers
 
 how to use
 ----------
-Simply set the option ''NEWSLETTER_TRACKING_ANKERS = True'' to track no ankers
+Simply set the option 'NEWSLETTER_TRACKING_ANKERS = True' to track no ankers
 in your email.
 
 The goal of this option is so send emails with a template that has ankers, but
-if ''NEWSLETTER_TRACKING_LINKS'' is enabled, the ankers won't work.
+if 'NEWSLETTER_TRACKING_LINKS' is enabled, the ankers won't work.
 
 Subscriber Verification
 =======================
@@ -276,12 +276,12 @@ Subscriber Verification
 how to use
 ----------
 After installation of the newsletter, subcriber verification is set to
-''NEWSLETTER_SUBSCRIBER_VERIFICATION = True''. If there is no need for, set it
-on ''False'' and run ''syncdb''
+'NEWSLETTER_SUBSCRIBER_VERIFICATION = True'. If there is no need for, set it
+on 'False' and run 'syncdb'
 
 To set an reply email, you will edit the option
-''NEWSLETTER_DEFAULT_HEADER_REPLY'' in *settings.py* for example to
-''Freshmilk NoReply<noreply@freshmilk.tv>''.
+'NEWSLETTER_DEFAULT_HEADER_REPLY' in *settings.py* for example to
+'Freshmilk NoReply<noreply@freshmilk.tv>'.
 
 Urls
 ----
@@ -291,5 +291,5 @@ Urls
 notes
 -----
   * if you had more than one mailing list, all will shown in the verification
-link
+    link
   * if you had only one mailing list, the user will add to this one
