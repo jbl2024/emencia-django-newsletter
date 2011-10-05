@@ -259,22 +259,23 @@ Database Representation
 .. image:: https://github.com/Fantomas42/emencia-django-newsletter/raw/master/docs/graph_model.png
 
 
-Tracking Ankers
-===============
+Tracking Ignore Ankers
+======================
 
-how to use
+How to use
 ----------
-Simply set the option ``NEWSLETTER_TRACKING_ANKERS = True`` to track no ankers
-in your email.
+Simply set the option ``NEWSLETTER_TRACKING_IGNORE_ANCHOR = True`` to track no
+ankers in your email.
 
 The goal of this option is so send emails with a template that has ankers, but
 if ``NEWSLETTER_TRACKING_LINKS`` is enabled, the ankers won't work.
 
 Subscriber Verification
 =======================
-***!IMPORTANT!*** This is modification has no backwards compatibility support.
+**!IMPORTANT! This is modification has no backwards compatibility support.
+!IMPORTANT!**
 
-how to use
+How to use
 ----------
 After installation of the newsletter, subcriber verification is set to
 ``NEWSLETTER_SUBSCRIBER_VERIFICATION = True``. If there is no need for, set it
@@ -288,10 +289,10 @@ Functionality
 -------------
 The subscriber verification has a table called SubscriberVerifications. If an
 user subscribes over the ``<host>/newsletters/subscribe`` page, the view will
-create a **Contact** in the **contacts** table and will also generates a uuid
+create a **Contact** in the **contacts** table and will also generate a uuid
 which is saved with the new **Contact** in SubscriberVerifications. After an
 call of ``<host>/newsletters/subscribe/<uuid>`` the view will delete the row in
-SubscriberVerifications and set the **Contact** in **contacts** as veriefied.
+SubscriberVerifications and set the **Contact** in **contacts** as verified.
 
 Thats all. :)
 
@@ -305,7 +306,7 @@ Templates
   * subscriber_verification.html > for subscribe the email
   * uuid_verification.html > for verificate the email
 
-notes
+Notes
 -----
   * if you had more than one mailing list, all will shown in the verification
     link
@@ -313,7 +314,7 @@ notes
   * translations are made for en and de. Please run ``makemessages`` for other
     languages
 
-update
+Update
 ------
 If you update from a prior version of this newsletter, please run ``dbshell``
 and add the column vriefied to newsletter_contact.

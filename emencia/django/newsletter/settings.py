@@ -39,12 +39,17 @@ RESTART_CONNECTION_BETWEEN_SENDING = getattr(
 
 BASE_PATH = getattr(settings, 'NEWSLETTER_BASE_PATH', 'uploads/newsletter')
 
-# --- tracking ankers --- start -----------------------------------------------
-TRACKING_ANKERS = getattr(settings, 'NEWSLETTER_TRACKING_ANKERS', False)
-# --- tracking ankers --- end -------------------------------------------------
+# --- tracking ignore anchor --- start ----------------------------------------
+TRACKING_IGNORE_ANCHOR = getattr(
+    settings,
+    'NEWSLETTER_TRACKING_IGNORE_ANCHOR',
+    False
+)
+# --- tracking ignore anchor --- end ------------------------------------------
 
 # --- subscriber verification --- start ---------------------------------------
-SUBSCRIBER_VERIFICATION = getattr(settings,
+SUBSCRIBER_VERIFICATION = getattr(
+    settings,
     'NEWSLETTER_SUBSCRIBER_VERIFICATION',
     True
 )

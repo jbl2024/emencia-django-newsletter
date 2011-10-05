@@ -4,9 +4,9 @@ from django.core.urlresolvers import reverse
 
 from emencia.django.newsletter.models import Link
 
-# --- tracking ankers --- start -----------------------------------------------
-from emencia.django.newsletter.settings import TRACKING_ANKERS
-# --- tracking ankers --- end -------------------------------------------------
+# --- tracking ignore anchor --- start ----------------------------------------
+from emencia.django.newsletter.settings import TRACKING_IGNORE_ANCHOR
+# --- tracking ignore anchor --- end ------------------------------------------
 
 
 def body_insertion(content, insertion, end=False):
@@ -33,11 +33,11 @@ def track_links(content, context):
         if link_markup.get('href') and \
                'no-track' not in link_markup.get('rel', ''):
 
-            # --- tracking ankers --- start -----------------------------------
-            if TRACKING_ANKERS:
+            # --- tracking ignore anchor --- start ----------------------------
+            if TRACKING_IGNORE_ANCHOR:
                 if '#' in link_markup.get('href')[0]:
                     continue
-            # --- tracking ankers --- end -------------------------------------
+            # --- tracking ignore anchor --- end ------------------------------
 
             link_href = link_markup['href']
             link_title = link_markup.get('title', link_href)
