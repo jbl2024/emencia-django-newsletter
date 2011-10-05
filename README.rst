@@ -272,7 +272,7 @@ if ``NEWSLETTER_TRACKING_LINKS`` is enabled, the ankers won't work.
 
 Subscriber Verification
 =======================
-**!IMPORTANT! This is modification has no backwards compatibility support.
+**!IMPORTANT! This modification has no backwards compatibility support.
 !IMPORTANT!**
 
 How to use
@@ -281,7 +281,7 @@ After installation of the newsletter, subcriber verification is set to
 ``NEWSLETTER_SUBSCRIBER_VERIFICATION = True``. If there is no need for, set it
 on ``False``.
 
-To set an reply email, you will edit the option
+To set an reply email adress, you will edit the option
 ``NEWSLETTER_DEFAULT_HEADER_REPLY`` in *settings.py* for example to
 ``Freshmilk NoReply<noreply@freshmilk.tv>``.
 
@@ -303,8 +303,8 @@ Urls
 
 Templates
 ---------
-  * subscriber_verification.html > for subscribe the email
-  * uuid_verification.html > for verificate the email
+  * subscriber_verification.html > to subscribe the email
+  * uuid_verification.html > to verificate the email
 
 Notes
 -----

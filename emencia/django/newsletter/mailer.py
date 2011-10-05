@@ -44,6 +44,9 @@ from emencia.django.newsletter.settings import SLEEP_BETWEEN_SENDING
 from emencia.django.newsletter.settings import \
      RESTART_CONNECTION_BETWEEN_SENDING
 
+# --- subscriber verification --- start ---------------------------------------
+from emencia.django.newsletter.settings import SUBSCRIBER_VERIFICATION
+# --- subscriber verification --- end -----------------------------------------
 
 LINK_RE = re.compile(r"https?://([^ \n]+\n)+[^ \n]+", re.MULTILINE)
 
@@ -93,6 +96,13 @@ class Mailer(object):
 
         i = 1
         for contact in self.expedition_list:
+            # --- subscriber verification --- start ---------------------------
+            if SUBSCRIBER_VERIFICATION:
+                if not contact.verified:
+                    print '- No verified email: {0}'.format(contact.email)
+                    continue
+            # --- subscriber verification --- end -----------------------------
+
             if self.verbose:
                 print '- Processing %s/%s (%s)' % (
                     i, number_of_recipients, contact.pk)
