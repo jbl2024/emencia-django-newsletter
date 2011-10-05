@@ -319,4 +319,5 @@ If you update from a prior version of this newsletter, please run ``dbshell``
 and add the column vriefied to newsletter_contact.
 
 sqlite command ::
+
     ALTER TABLE newsletter_contact ADD COLUMN verified bool;
