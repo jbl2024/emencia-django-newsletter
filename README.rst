@@ -264,7 +264,7 @@ Tracking Ankers
 
 how to use
 ----------
-Simply set the option `NEWSLETTER_TRACKING_ANKERS = True` to track no ankers
+Simply set the option ``NEWSLETTER_TRACKING_ANKERS = True`` to track no ankers
 in your email.
 
 The goal of this option is so send emails with a template that has ankers, but
