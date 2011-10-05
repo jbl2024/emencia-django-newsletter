@@ -272,12 +272,13 @@ if ``NEWSLETTER_TRACKING_LINKS`` is enabled, the ankers won't work.
 
 Subscriber Verification
 =======================
+***!IMPORTANT!*** This is modification has no backwards compatibility support.
 
 how to use
 ----------
 After installation of the newsletter, subcriber verification is set to
 ``NEWSLETTER_SUBSCRIBER_VERIFICATION = True``. If there is no need for, set it
-on ``False`` and run ``syncdb``
+on ``False``.
 
 To set an reply email, you will edit the option
 ``NEWSLETTER_DEFAULT_HEADER_REPLY`` in *settings.py* for example to
@@ -309,3 +310,13 @@ notes
   * if you had more than one mailing list, all will shown in the verification
     link
   * if you had only one mailing list, the user will add to this one
+  * translations are made for en and de. Please run ``makemessages`` for other
+    languages
+
+update
+------
+If you update from a prior version of this newsletter, please run ``dbshell``
+and add the column vriefied to newsletter_contact.
+
+sqlite command ::
+    ALTER TABLE newsletter_contact ADD COLUMN verified bool;
