@@ -258,3 +258,38 @@ Database Representation
 
 .. image:: https://github.com/Fantomas42/emencia-django-newsletter/raw/master/docs/graph_model.png
 
+
+Tracking Ankers
+===============
+
+how to use
+----------
+Simply set the option ''NEWSLETTER_TRACKING_ANKERS = True'' to track no ankers
+in your email.
+
+The goal of this option is so send emails with a template that has ankers, but
+if ''NEWSLETTER_TRACKING_LINKS'' is enabled, the ankers won't work.
+
+Subscriber Verification
+=======================
+
+how to use
+----------
+After installation of the newsletter, subcriber verification is set to
+''NEWSLETTER_SUBSCRIBER_VERIFICATION = True''. If there is no need for, set it
+on ''False'' and run ''syncdb''
+
+To set an reply email, you will edit the option
+''NEWSLETTER_DEFAULT_HEADER_REPLY'' in *settings.py* for example to
+''Freshmilk NoReply<noreply@freshmilk.tv>''.
+
+Urls
+----
+  * <host>/newsletters/subscribe > to subscribe the email
+  * <host>/newsletters/subscribe/<uuid> > to verificate the email
+
+notes
+-----
+  * if you had more than one mailing list, all will shown in the verification
+link
+  * if you had only one mailing list, the user will add to this one
