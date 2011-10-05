@@ -283,10 +283,26 @@ To set an reply email, you will edit the option
 ``NEWSLETTER_DEFAULT_HEADER_REPLY`` in *settings.py* for example to
 ``Freshmilk NoReply<noreply@freshmilk.tv>``.
 
+Functionality
+-------------
+The subscriber verification has a table called SubscriberVerifications. If an
+user subscribes over the ``<host>/newsletters/subscribe`` page, the view will
+create a **Contact** in the **contacts** table and will also generates a uuid
+which is saved with the new **Contact** in SubscriberVerifications. After an
+call of ``<host>/newsletters/subscribe/<uuid>`` the view will delete the row in
+SubscriberVerifications and set the **Contact** in **contacts** as veriefied.
+
+Thats all. :)
+
 Urls
 ----
   * <host>/newsletters/subscribe > to subscribe the email
   * <host>/newsletters/subscribe/<uuid> > to verificate the email
+
+Templates
+---------
+  * subscriber_verification.html > for subscribe the email
+  * uuid_verification.html > for verificate the email
 
 notes
 -----
