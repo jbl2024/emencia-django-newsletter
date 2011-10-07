@@ -11,6 +11,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404, render_to_response
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import smart_str
 
 from emencia.django.newsletter.models \
     import SMTPServer, MailingList, SubscriberVerification
@@ -41,8 +42,8 @@ def view_subscriber_verification(request, form_class):
             # set server settings to django
             settings.EMAIL_HOST = server.host
             settings.EMAIL_HOST_PASSWORD = server.password
-            settings.EMAIL_HOST_USER = server.user
-            settings.EMAIL_PORT = server.port
+            settings.EMAIL_HOST_USER = smart_str(server.user)
+            settings.EMAIL_PORT = int(server.port)
             settings.EMAIL_USE_TLS = server.tls
 
             # mail settings
