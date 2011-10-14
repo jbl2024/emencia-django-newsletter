@@ -57,8 +57,4 @@ SUBSCRIBER_VERIFICATION = getattr(
 
 # --- templates --- start -----------------------------------------------------
 USE_TEMPLATE = getattr( settings, 'NEWSLETTER_USE_TEMPLATE', True)
-
-settings.TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(__file__), 'templates'),
-)
 # --- templates --- end -------------------------------------------------------
