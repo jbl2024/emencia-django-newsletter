@@ -27,7 +27,18 @@ def render_newsletter(request, slug, context):
     if TRACKING_LINKS:
         content = track_links(content, context)
     unsubscription = render_file('newsletter/newsletter_link_unsubscribe.html', context)
-    content = body_insertion(content, unsubscription, end=True)
+    if USE_TEMPLATE:
+        content =  render_to_string(
+            'mailtemplates/{0}/{1}'.format(self.newsletter.template,'index.html'),
+            {
+                'content': content,
+                'link_site': link_site,
+                'unsubscription': unsubscription
+            }
+        )
+        #insert image_tracking
+    else:
+        content = body_insertion(content, unsubscription, end=True)
 
     return render_to_response('newsletter/newsletter_detail.html',
                               {'content': content,
