@@ -15,6 +15,9 @@ from emencia.django.newsletter.utils.newsletter import track_links
 from emencia.django.newsletter.utils.tokens import untokenize
 from emencia.django.newsletter.settings import TRACKING_LINKS
 
+# --- template --- start ------------------------------------------------------
+from emencia.django.newsletter.settings import USE_TEMPLATE
+# --- template --- end --------------------------------------------------------
 
 def render_newsletter(request, slug, context):
     """Return a newsletter in HTML format"""
@@ -27,6 +30,7 @@ def render_newsletter(request, slug, context):
     if TRACKING_LINKS:
         content = track_links(content, context)
     unsubscription = render_file('newsletter/newsletter_link_unsubscribe.html', context)
+    # --- template --- start --------------------------------------------------
     if USE_TEMPLATE:
         content =  render_to_string(
             'mailtemplates/{0}/{1}'.format(self.newsletter.template,'index.html'),
@@ -39,6 +43,7 @@ def render_newsletter(request, slug, context):
         #insert image_tracking
     else:
         content = body_insertion(content, unsubscription, end=True)
+    # --- template --- end ----------------------------------------------------
 
     return render_to_response('newsletter/newsletter_detail.html',
                               {'content': content,
