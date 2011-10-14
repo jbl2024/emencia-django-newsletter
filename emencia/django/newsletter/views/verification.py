@@ -40,8 +40,8 @@ def view_subscriber_verification(request, form_class):
             server = SMTPServer.objects.get(id=1)
 
             # set server settings to django
-            settings.EMAIL_HOST = server.host
-            settings.EMAIL_HOST_PASSWORD = server.password
+            settings.EMAIL_HOST = smart_str(server.host)
+            settings.EMAIL_HOST_PASSWORD = smart_str(server.password)
             settings.EMAIL_HOST_USER = smart_str(server.user)
             settings.EMAIL_PORT = int(server.port)
             settings.EMAIL_USE_TLS = server.tls
