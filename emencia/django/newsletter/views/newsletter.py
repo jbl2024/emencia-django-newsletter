@@ -16,6 +16,7 @@ from emencia.django.newsletter.utils.tokens import untokenize
 from emencia.django.newsletter.settings import TRACKING_LINKS
 
 # --- template --- start ------------------------------------------------------
+from django.template.loader import render_to_string
 from emencia.django.newsletter.settings import USE_TEMPLATE
 # --- template --- end --------------------------------------------------------
 
