@@ -1,4 +1,5 @@
 """Mailer for emencia.django.newsletter"""
+import os
 import re
 import time
 import mimetypes
@@ -47,6 +48,10 @@ from emencia.django.newsletter.settings import \
 # --- subscriber verification --- start ---------------------------------------
 from emencia.django.newsletter.settings import SUBSCRIBER_VERIFICATION
 # --- subscriber verification --- end -----------------------------------------
+
+# --- template --- start ------------------------------------------------------
+from emencia.django.newsletter.settings import USE_TEMPLATE
+# --- template --- end --------------------------------------------------------
 
 LINK_RE = re.compile(r"https?://([^ \n]+\n)+[^ \n]+", re.MULTILINE)
 
@@ -218,6 +223,10 @@ class Mailer(object):
 
     def build_email_content(self, contact):
         """Generate the mail for a contact"""
+        # --- template --- start ----------------------------------------------
+        link_site = unsubscription = image_tracking = ''
+        # --- template --- end ------------------------------------------------
+
         uidb36, token = tokenize(contact)
         context = Context({'contact': contact,
                            'domain': Site.objects.get_current().domain,
@@ -228,14 +237,38 @@ class Mailer(object):
         if TRACKING_LINKS:
             content = track_links(content, context)
         link_site = render_to_string('newsletter/newsletter_link_site.html', context)
-        content = body_insertion(content, link_site)
 
+        # --- template --- start ----------------------------------------------
         if INCLUDE_UNSUBSCRIPTION:
-            unsubscription = render_to_string('newsletter/newsletter_link_unsubscribe.html', context)
-            content = body_insertion(content, unsubscription, end=True)
+            unsubscription = render_to_string(
+                'newsletter/newsletter_link_unsubscribe.html',
+                context
+            )
         if TRACKING_IMAGE:
-            image_tracking = render_to_string('newsletter/newsletter_image_tracking.html', context)
-            content = body_insertion(content, image_tracking, end=True)
+            image_tracking = render_to_string(
+                'newsletter/newsletter_image_tracking.html',
+                context
+            )
+
+        if USE_TEMPLATE:
+            content =  render_to_string(
+                'mailtemplates/{0}/{1}'.format(self.newsletter.template,'index.html'),
+                {
+                    'content': content,
+                    'link_site': link_site,
+                    'unsubscription': unsubscription
+                }
+            )
+            #insert image_tracking
+        else:
+            content = body_insertion(content, link_site)
+            if INCLUDE_UNSUBSCRIPTION:
+                content = body_insertion(content, unsubscription, end=True)
+            if TRACKING_IMAGE:
+                content = body_insertion(content, image_tracking, end=True)
+
+        # --- template --- end ------------------------------------------------
+
         return smart_unicode(content)
 
     def update_newsletter_status(self):

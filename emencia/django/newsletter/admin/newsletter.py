@@ -24,6 +24,9 @@ from emencia.django.newsletter.utils.workgroups import request_workgroups_contac
 from emencia.django.newsletter.utils.workgroups import request_workgroups_newsletters_pk
 from emencia.django.newsletter.utils.workgroups import request_workgroups_mailinglists_pk
 
+# --- templates --- start -----------------------------------------------------
+from emencia.django.newsletter.settings import USE_TEMPLATE
+# --- templates --- end -------------------------------------------------------
 
 class AttachmentAdminInline(admin.TabularInline):
     model = Attachment
@@ -39,13 +42,18 @@ class BaseNewsletterAdmin(admin.ModelAdmin):
     list_filter = ('status', 'sending_date', 'creation_date', 'modification_date')
     search_fields = ('title', 'content', 'header_sender', 'header_reply')
     filter_horizontal = ['test_contacts']
-    fieldsets = ((None, {'fields': ('title', 'content',)}),
+    fieldsets = ((None, {'fields': ['title', 'content',]}),
                  (_('Receivers'), {'fields': ('mailing_list', 'test_contacts',)}),
                  (_('Sending'), {'fields': ('sending_date', 'status',)}),
                  (_('Miscellaneous'), {'fields': ('server', 'header_sender',
                                                   'header_reply', 'slug'),
                                        'classes': ('collapse',)}),
                  )
+    # --- templates --- start -------------------------------------------------
+    if USE_TEMPLATE:
+        fieldsets[0][1]['fields'].append('template')
+    # --- templates --- end ---------------------------------------------------
+
     prepopulated_fields = {'slug': ('title',)}
     inlines = (AttachmentAdminInline,)
     actions = ['send_mail_test', 'make_ready_to_send', 'make_cancel_sending']

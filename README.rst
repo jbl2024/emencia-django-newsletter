@@ -26,6 +26,8 @@ More than a long speech, here the list of the main features :
   * Attachments in newsletters.
   * Unique urls for an user.
   * Tracking statistics.
+  * Email verification
+  * Templates
 
 
 Architecture

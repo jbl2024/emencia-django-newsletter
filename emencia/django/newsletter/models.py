@@ -25,6 +25,11 @@ if SUBSCRIBER_VERIFICATION:
     import uuid
 # --- subscriber verification --- end -----------------------------------------
 
+# --- templates --- start -----------------------------------------------------
+from emencia.django.newsletter.settings import USE_TEMPLATE
+from emencia.django.newsletter.utils.template import get_templates
+# --- templates --- end -------------------------------------------------------
+
 # Patch for Python < 2.6
 try:
     getattr(SMTP, 'ehlo_or_helo_if_needed')
@@ -214,8 +219,26 @@ class Newsletter(models.Model):
     title = models.CharField(_('title'), max_length=255,
                              help_text=_('You can use the "{{ UNIQUE_KEY }}" variable ' \
                                          'for unique identifier within the newsletter\'s title.'))
-    content = models.TextField(_('content'), help_text=_('Or paste an URL.'),
-                               default=_('<body>\n<!-- Edit your newsletter here -->\n</body>'))
+
+    # --- templates --- start -------------------------------------------------
+    if USE_TEMPLATE:
+        content = models.TextField(
+            _('content'),
+            help_text=_('Or paste an URL.'),
+            default=_('<!-- Edit your newsletter here -->')
+        )
+        template = models.CharField(
+            _('template'),
+            max_length=100,
+            choices=get_templates(),
+        )
+    else:
+        content = models.TextField(
+            _('content'),
+            help_text=_('Or paste an URL.'),
+            default=_('<body>\n<!-- Edit your newsletter here -->\n</body>')
+        )
+    # --- templates --- end ---------------------------------------------------
 
     mailing_list = models.ForeignKey(MailingList, verbose_name=_('mailing list'))
     test_contacts = models.ManyToManyField(Contact, verbose_name=_('test contacts'),
