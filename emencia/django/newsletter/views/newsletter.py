@@ -34,7 +34,7 @@ def render_newsletter(request, slug, context):
     # --- template --- start --------------------------------------------------
     if USE_TEMPLATE:
         content =  render_to_string(
-            'mailtemplates/{0}/{1}'.format(self.newsletter.template,'index.html'),
+            'mailtemplates/{0}/{1}'.format(newsletter.template,'index.html'),
             {
                 'content': content,
                 'link_site': link_site,
