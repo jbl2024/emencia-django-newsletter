@@ -37,7 +37,7 @@ def render_newsletter(request, slug, context):
             'mailtemplates/{0}/{1}'.format(newsletter.template,'index.html'),
             {
                 'content': content,
-                'link_site': link_site,
+                'link_site': '',
                 'unsubscription': unsubscription
             }
         )
