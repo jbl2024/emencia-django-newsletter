@@ -13,16 +13,18 @@ def get_templates():
             os.path.join(
                 settings.TEMPLATE_DIRS[0],
                 'mailtemplates')
-            ).next()[1]
+            ).next()[1]  if i[0] not in '.'
         )
-    except IndexError:
+    except (IndexError, StopIteration):
         return ((i,i) for i in os.walk(
-            os.path.join(
-                get_app_template_dir(
-                    'emencia.django.newsletter',
-                    'templates'
-                ),'mailtemplates')
-            ).next()[1]
+                os.path.join(
+                    get_app_template_dir(
+                        'emencia.django.newsletter',
+                        'templates'
+                    ),
+                    'mailtemplates'
+                )
+            ).next()[1] if i[0] not in '.'
         )
 
 # --- templates --- end -------------------------------------------------------
