@@ -101,6 +101,7 @@ def view_uuid_verification(request, link_id, form_class=None):
         else:
             context['form'] = form_class()
 
+        subscription['object'].delete()
         context['uuid_exist'] = True
     except SubscriberVerification.DoesNotExist:
         context['uuid_exist'] = False
