@@ -20,7 +20,7 @@ msgstr ""
 
 #: forms.py:26
 msgid "Email"
-msgstr ""
+msgstr "E-Mail"
 
 #: forms.py:50 forms.py:72
 msgid "Mailing lists"
@@ -674,7 +674,7 @@ msgstr "Aktion"
 
 #: templates/newsletter/newsletter_link_site.html:5
 msgid "If you cannot see this email,"
-msgstr "Wenn Sie diese Email nicht sehen können,"
+msgstr "Wenn Sie diese E-Mail nicht sehen können,"
 
 #: templates/newsletter/newsletter_link_site.html:6
 #: templates/newsletter/newsletter_link_unsubscribe.html:6
@@ -860,7 +860,7 @@ msgstr ""
 
 #: views/verification.py:55
 msgid "verify link"
-msgstr "Email bestätigen"
+msgstr "E-Mail bestätigen"
 
 #~ msgid "test string"
 #~ msgstr "Hello World"
