@@ -78,7 +78,7 @@ def view_uuid_verification(request, link_id, form_class=None):
     A simple view that shows if verification is true or false.
     """
     context = {}
-    context['mailing_list_count'] = MailingList.objects.count()
+    context['mailing_list_count'] = MailingList.objects.all().count()
     context['link_id'] = link_id
 
     try:
@@ -91,7 +91,7 @@ def view_uuid_verification(request, link_id, form_class=None):
         subscription['contact'].save()
 
         if context['mailing_list_count'] == 1:
-            mailing_list = MailingList.objects.get(id=1)
+            mailing_list = MailingList.objects.get()
             mailing_list.subscribers.add(subscription['contact'].id)
         elif request.POST:
             form = form_class(request.POST)
