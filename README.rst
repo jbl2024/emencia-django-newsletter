@@ -106,18 +106,6 @@ Then register **emencia.django.newsletter**, **admin**, **contenttypes** and **t
     'emencia.django.newsletter',)
 
 
-Template Context Processors
----------------------------
-
-Add these following template context processors if not already present. ::
-
-  TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.auth',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.request',
-    'django.core.context_processors.media',
-    'emencia.django.newsletter.context_processors.media',)
-
 Urls
 ----
 
@@ -144,6 +132,13 @@ Synchronization
 ---------------
 
 Now you can run a *syncdb* for installing the models into your database.
+
+Settings
+--------
+
+You have to add in your settings the email address used to send the newsletter : ::
+
+  NEWSLETTER_DEFAULT_HEADER_SENDER = 'My NewsLetter <newsletter@myhost.com>'
 
 
 DBMS considerations
@@ -187,11 +182,11 @@ In his AdminModel definition add this method and register it into the *actions* 
 
           subscribers = []
           for profile in queryset:
-            contact, created = Contact.objects.get_or_create(email=profile.mail,
-                                                             defaults={'first_name': profile.first_name,
-                                                                       'last_name': profile.last_name,
-                                                                       'content_object': profile})
-          subscribers.append(contact)
+              contact, created = Contact.objects.get_or_create(email=profile.mail,
+                                                               defaults={'first_name': profile.first_name,
+                                                                         'last_name': profile.last_name,
+                                                                         'content_object': profile})
+              subscribers.append(contact)
           new_mailing = MailingList(name='New mailing list',
                                     description='New mailing list created from admin/profile')
           new_mailing.save()
@@ -200,7 +195,7 @@ In his AdminModel definition add this method and register it into the *actions* 
           self.message_user(request, '%s succesfully created.' % new_mailing)
       make_mailing_list.short_description = 'Create a mailing list'
 
-      actions = ['make_mailing_list',]
+      actions = ['make_mailing_list']
 
 This action will create or retrieve all the **Contact** instances needed for the mailing list creation.
 
