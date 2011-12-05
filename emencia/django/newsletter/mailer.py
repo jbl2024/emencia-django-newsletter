@@ -228,22 +228,41 @@ class Mailer(object):
         # --- template --- end ------------------------------------------------
 
         uidb36, token = tokenize(contact)
-        context = Context({'contact': contact,
-                           'domain': Site.objects.get_current().domain,
-                           'newsletter': self.newsletter,
-                           'tracking_image_format': TRACKING_IMAGE_FORMAT,
-                           'uidb36': uidb36, 'token': token})
+
+        pre_context = {
+            'contact': contact,
+            'domain': Site.objects.get_current().domain,
+            'newsletter': self.newsletter,
+            'tracking_image_format': TRACKING_IMAGE_FORMAT,
+            'uidb36': uidb36,
+            'token': token
+        }
+
+        link_site_exist = False
+        link_site = render_to_string('newsletter/newsletter_link_site.html', Context(pre_context))
+        if '{{ link_site }}' in self.newsletter.content:
+            link_site_exist = True
+            pre_context['link_site'] = link_site
+
+        if INCLUDE_UNSUBSCRIPTION:
+            unsubscribtion_exist = False
+
+            unsubscription = render_to_string(
+                'newsletter/newsletter_link_unsubscribe.html',
+                Context(pre_context)
+            )
+            
+            if '{{ unsubscribtion }}' in self.newsletter.content:
+                unsubscribtion_exist = True
+                pre_context['unsubscription'] = unsubscription
+
+        context = Context(pre_context)
+        
         content = self.newsletter_template.render(context)
         if TRACKING_LINKS:
             content = track_links(content, context)
-        link_site = render_to_string('newsletter/newsletter_link_site.html', context)
 
         # --- template --- start ----------------------------------------------
-        if INCLUDE_UNSUBSCRIPTION:
-            unsubscription = render_to_string(
-                'newsletter/newsletter_link_unsubscribe.html',
-                context
-            )
         if TRACKING_IMAGE:
             image_tracking = render_to_string(
                 'newsletter/newsletter_image_tracking.html',
@@ -251,13 +270,20 @@ class Mailer(object):
             )
 
         if USE_TEMPLATE:
+            content_context = {'content': content}
+
+            if not link_site_exist:
+                content_context['link_site'] = link_site
+
+            if not unsubscribtion_exist:
+                content_context['unsubscription'] = unsubscription
+            
             content =  render_to_string(
-                'mailtemplates/{0}/{1}'.format(self.newsletter.template,'index.html'),
-                {
-                    'content': content,
-                    'link_site': link_site,
-                    'unsubscription': unsubscription
-                }
+                'mailtemplates/{0}/{1}'.format(
+                    self.newsletter.template,
+                    'index.html'
+                ),
+                content_context
             )
             #insert image_tracking
         else:
