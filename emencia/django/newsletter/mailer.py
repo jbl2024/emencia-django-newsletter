@@ -251,11 +251,8 @@ class Mailer(object):
                 'newsletter/newsletter_link_unsubscribe.html',
                 Context(pre_context)
             )
-
-            print 'TEST 1'
             
             if '{{ unsubscription }}' in self.newsletter.content:
-                print 'TEST'
                 unsubscribtion_exist = True
                 pre_context['unsubscription'] = unsubscription
 
