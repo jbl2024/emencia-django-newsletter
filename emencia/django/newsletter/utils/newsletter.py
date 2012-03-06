@@ -10,6 +10,7 @@ from emencia.django.newsletter.settings import TRACKING_IGNORE_ANCHOR
 
 from emencia.django.newsletter.settings import USE_PRETTIFY
 
+
 def body_insertion(content, insertion, end=False):
     """Insert an HTML content into the body HTML node"""
     if not content.startswith('<body'):
