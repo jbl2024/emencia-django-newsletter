@@ -56,7 +56,7 @@ class BaseNewsletterAdmin(admin.ModelAdmin):
 
     prepopulated_fields = {'slug': ('title',)}
     inlines = (AttachmentAdminInline,)
-    actions = ['send_mail_test', 'make_ready_to_send', 'make_cancel_sending']
+    actions = ['send_mail_test', 'make_ready_to_send', 'make_cancel_sending', 'duplicate']
     actions_on_top = False
     actions_on_bottom = True
 
@@ -174,6 +174,20 @@ class BaseNewsletterAdmin(admin.ModelAdmin):
             newsletter.save()
         self.message_user(request, _('%s newletters are cancelled') % queryset.count())
     make_cancel_sending.short_description = _('Cancel the sending')
+
+    # --- duplicate newsletter --- start --------------------------------------
+    def duplicate(self, request, queryset):
+        """Duplicate selected newsletters"""
+        for newsletter in queryset:
+            newsletter.pk = None
+            i = 1
+            while Newsletter.objects.filter(slug=u'%s-%s' % (newsletter.slug, i)).count() > 0:
+                i += 1
+            newsletter.slug = u'%s-%s' % (newsletter.slug, i)
+            newsletter.title = u'%s [%s]' % (newsletter.title, i)
+            newsletter.save()
+        
+    # --- duplicate newsletter --- end ----------------------------------------
 
 
 if USE_TINYMCE:
