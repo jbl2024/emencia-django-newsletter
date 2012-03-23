@@ -6,6 +6,7 @@ from django.shortcuts import render_to_response
 from django.contrib.sites.models import Site
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string as render_file
+from django.http import HttpResponseForbidden
 
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
@@ -59,6 +60,14 @@ def view_newsletter_preview(request, slug):
     context = {'contact': request.user}
     return render_newsletter(request, slug, context)
 
+def view_newsletter_public(request, slug):
+    newsletter = Newsletter.objects.get(slug=slug)
+
+    print dir(newsletter)
+    
+    if newsletter.public: return render_newsletter(request, slug, {})
+
+    return render_to_response('newsletter/newsletter_forbidden.html')
 
 def view_newsletter_contact(request, slug, uidb36, token):
     """Visualization of a newsletter by an user"""

@@ -251,6 +251,8 @@ class Newsletter(models.Model):
         )
     # --- templates --- end ---------------------------------------------------
 
+    public = models.BooleanField(_('public'), default=False)
+
     mailing_list = models.ForeignKey(MailingList, verbose_name=_('mailing list'))
     test_contacts = models.ManyToManyField(Contact, verbose_name=_('test contacts'),
                                            blank=True, null=True)
