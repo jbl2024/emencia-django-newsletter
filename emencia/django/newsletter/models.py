@@ -277,6 +277,8 @@ class Newsletter(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
+        if self.public:
+            return ('newsletter_newsletter_public', (self.slug,))
         return ('newsletter_newsletter_preview', (self.slug,))
 
     @models.permalink
