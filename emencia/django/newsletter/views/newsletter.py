@@ -62,8 +62,6 @@ def view_newsletter_preview(request, slug):
 
 def view_newsletter_public(request, slug):
     newsletter = Newsletter.objects.get(slug=slug)
-
-    print dir(newsletter)
     
     if newsletter.public: return render_newsletter(request, slug, {})
 
