@@ -12,7 +12,7 @@
         </p>
 
         {% if mailing_list_count > 1 and not send %}
-            <form action="." method="post">
+            <form action="" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="{% trans "Subscribe" %}" />

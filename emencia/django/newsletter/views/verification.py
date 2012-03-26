@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
-# --- subscriber verification --- start ---------------------------------------
 """
 Views for emencia.django.newsletter Subscriber Verification
-
-TODO:
-    - add template for mail
 """
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
@@ -77,6 +73,7 @@ def view_uuid_verification(request, link_id, form_class=None):
     """
     A simple view that shows if verification is true or false.
     """
+    ready = False
     context = {}
     context['mailinglists'] = mailinglists = MailingList.objects.filter(public=True)
     context['mailing_list_count'] = mailinglists.count()
@@ -87,30 +84,35 @@ def view_uuid_verification(request, link_id, form_class=None):
         subscription['object'] = SubscriberVerification.objects.get(
             link_id=link_id
         )
+        context['uuid_exist'] = True
         subscription['contact'] = subscription['object'].contact
-        subscription['contact'].verified = True
-        subscription['contact'].save()
 
         if context['mailing_list_count'] == 1:
             mailing_list = mailinglists.get().subscribers.add(
                 subscription['contact'].id
             )
+            ready = True
+            
         elif request.POST:
             form = form_class(request.POST)
             if form.is_valid():
                 form.save(subscription['contact'].id)
-            context['send'] = True
+                context['send'] = True
+                ready = True
+                
         else:
             context['form'] = form_class()
 
-        subscription['object'].delete()
-        context['uuid_exist'] = True
+        if ready:
+            subscription['contact'].verified = True
+            subscription['contact'].save()
+            subscription['object'].delete()
+        
     except SubscriberVerification.DoesNotExist:
+        print '### 1.2'
+        
         context['uuid_exist'] = False
 
     return render_to_response('newsletter/uuid_verification.html',
                               context,
                               context_instance=RequestContext(request))
-
-
-# --- subscriber verification --- end -----------------------------------------
