@@ -67,8 +67,10 @@ if SUBSCRIBER_VERIFICATION:
         """Form for subscribing to all mailing list after verification"""
 
         mailing_lists = forms.ModelMultipleChoiceField(
-            queryset=MailingList.objects.all(),
-            initial=[obj.id for obj in MailingList.objects.all()],
+            queryset=MailingList.objects.filter(public=True),
+            initial=[
+                obj.id for obj in MailingList.objects.filter(public=True)
+            ],
             label=_('Mailing lists'),
             widget=forms.CheckboxSelectMultiple(),
         )

@@ -180,6 +180,8 @@ class MailingList(models.Model):
     """Mailing list"""
     name = models.CharField(_('name'), max_length=255)
     description = models.TextField(_('description'), blank=True)
+    
+    public = models.BooleanField(_('public'), default=False)
 
     subscribers = models.ManyToManyField(Contact, verbose_name=_('subscribers'),
                                          related_name='mailinglist_subscriber')
